@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="MVCWebSite.Core/MVCWebSite.Core.csproj" />
+  <Project Path="MVCWebSite.Data/MVCWebSite.Data.csproj" />
+  <Project Path="MVCWebSite.WebUI/MVCWebSite.WebUI.csproj" />
+</Solution>
