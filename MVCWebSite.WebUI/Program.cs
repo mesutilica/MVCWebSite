@@ -1,7 +1,13 @@
+using MVCWebSite.Data; // DatabaseContext
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSession();
+
+builder.Services.AddDbContext<DatabaseContext>();
 
 var app = builder.Build();
 
@@ -19,6 +25,11 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Main}/{action=Index}/{id?}")
+    ;
 
 app.MapControllerRoute(
     name: "default",
