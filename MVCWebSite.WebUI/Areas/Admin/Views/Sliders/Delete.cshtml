@@ -1,4 +1,4 @@
-@model Category
+@model Slider
 
 @{
     ViewData["Title"] = "Sil";
@@ -9,7 +9,7 @@
 <h3>Kayıt silinsin mi?</h3>
 
 <div>
-    <h4>Kategori</h4>
+    <h4>Slider</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -20,10 +20,10 @@
         </dd>
 
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Title)
         </dd>
 
         <dt class = "col-sm-2">
@@ -39,27 +39,13 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Image)
         </dd>
-
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
     </dl>
 </div>
 
-<form asp-area="Admin" asp-controller="Categories" asp-action="Delete" method="post">
+<form asp-area="Admin" asp-controller="Sliders" asp-action="Delete" method="post">
     <input asp-for="Id" type="hidden" />
     <div class="form-group">
         <input type="submit" value="Sil" class="btn btn-danger" />
-        <a asp-area="Admin" asp-controller="Categories" asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+        <a asp-area="Admin" asp-controller="Sliders" asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
     </div>
 </form>

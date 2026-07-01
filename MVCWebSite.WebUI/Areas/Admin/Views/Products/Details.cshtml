@@ -1,0 +1,48 @@
+@model Product
+
+@{
+    ViewData["Title"] = "Ürün Detayı";
+}
+
+<h1>Ürün Detayı</h1>
+
+<div>
+    <h4>Ürün</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Id)</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Description)</dt>
+        <dd class="col-sm-10">@Model.Description</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Image)</dt>
+        <dd class="col-sm-10">@Model.Image</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.CreateDate)</dt>
+        <dd class="col-sm-10">@Model.CreateDate.ToString("g")</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.IsActive)</dt>
+        <dd class="col-sm-10">@(Model.IsActive ? "Aktif" : "Pasif")</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.IsHome)</dt>
+        <dd class="col-sm-10">@(Model.IsHome ? "Evet" : "Hayır")</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Stock)</dt>
+        <dd class="col-sm-10">@Model.Stock</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Price)</dt>
+        <dd class="col-sm-10">@Model.Price.ToString("C")</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Category)</dt>
+        <dd class="col-sm-10">@Model.Category?.Name</dd>
+    </dl>
+</div>
+
+<p>
+    <a asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Düzenle</a>
+    <a asp-area="Admin" asp-controller="Products" asp-action="Index" class="btn btn-secondary">Geri</a>
+</p>

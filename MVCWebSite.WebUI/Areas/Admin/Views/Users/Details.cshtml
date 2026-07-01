@@ -1,0 +1,45 @@
+@model User
+
+@{
+    ViewData["Title"] = "Kullanıcı Detayı";
+}
+
+<h1>Kullanıcı Detayı</h1>
+
+<div>
+    <h4>Kullanıcı</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Id)</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.UserName)</dt>
+        <dd class="col-sm-10">@Model.UserName</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Surname)</dt>
+        <dd class="col-sm-10">@Model.Surname</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.IsActive)</dt>
+        <dd class="col-sm-10">@(Model.IsActive ? "Aktif" : "Pasif")</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.IsAdmin)</dt>
+        <dd class="col-sm-10">@(Model.IsAdmin ? "Evet" : "Hayır")</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.CreateDate)</dt>
+        <dd class="col-sm-10">@Model.CreateDate.ToString("g")</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.UserGuid)</dt>
+        <dd class="col-sm-10">@Model.UserGuid</dd>
+    </dl>
+</div>
+
+<p>
+    <a asp-area="Admin" asp-controller="Users" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Düzenle</a>
+    <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="btn btn-secondary">Geri</a>
+</p>

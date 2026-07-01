@@ -36,10 +36,7 @@
                     <td>@(item.IsActive ? "Aktif" : "Pasif")</td>
                     <td>
                         <a asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Düzenle</a> |
-                        <a asp-area="Admin" asp-controller="Categories" asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detay</a> |
-                        <form asp-area="Admin" asp-controller="Categories" asp-action="Delete" asp-route-id="@item.Id" method="post">
-                            <button type="submit" class="btn btn-sm btn-danger">Sil</button>
-                        </form>
+                        <a asp-area="Admin" asp-controller="Categories" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Sil</a>                        
                     </td>
                 </tr>
             }

@@ -1,0 +1,64 @@
+@model MVCWebSite.Core.Entities.User
+
+@{
+    ViewData["Title"] = "Kullanıcı Ekle";
+}
+
+<h1>Kullanıcı Ekle</h1>
+
+<form asp-area="Admin" asp-controller="Users" asp-action="Create" method="post">
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            <label asp-for="UserName" class="control-label"></label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" type="password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Surname" class="control-label"></label>
+            <input asp-for="Surname" class="form-control" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>
+
+        <div class="form-group form-check">
+            <input asp-for="IsActive" class="form-check-input" />
+            <label asp-for="IsActive" class="form-check-label"></label>
+            <span asp-validation-for="IsActive" class="text-danger"></span>
+        </div>
+
+        <div class="form-group form-check">
+            <input asp-for="IsAdmin" class="form-check-input" />
+            <label asp-for="IsAdmin" class="form-check-label"></label>
+            <span asp-validation-for="IsAdmin" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Ekle" class="btn btn-primary" />
+            <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
