@@ -37,7 +37,10 @@
             @Html.DisplayNameFor(model => model.Image)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <img src="/Images/@Url.Content(Model.Image)" alt="Slider Image" style="max-width:200px; display:block; margin-bottom:10px;" />
+            }
         </dd>
 
         <dt class = "col-sm-2">

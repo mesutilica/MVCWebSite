@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCWebSite.Core.Entities;
 using MVCWebSite.Data;
@@ -6,7 +6,7 @@ using MVCWebSite.WebUI.Tools;
 
 namespace MVCWebSite.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize]
     public class SlidersController : Controller
     {
         private readonly DatabaseContext _context;
@@ -67,12 +67,14 @@ namespace MVCWebSite.WebUI.Areas.Admin.Controllers
         // POST: SlidersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Slider collection)
+        public ActionResult Edit(int id, Slider collection, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (Image is not null)
+                        collection.Image = FileHelper.FileLoader(Image);
                     _context.Sliders.Update(collection);
                     _context.SaveChanges();
                     return RedirectToAction(nameof(Index));

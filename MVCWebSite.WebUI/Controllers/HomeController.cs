@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MVCWebSite.Data;
 using MVCWebSite.WebUI.Models;
 using System.Diagnostics;
 
@@ -6,9 +7,16 @@ namespace MVCWebSite.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly DatabaseContext _context;
+
+        public HomeController(DatabaseContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View(_context.Sliders);
         }
 
         public IActionResult Privacy()

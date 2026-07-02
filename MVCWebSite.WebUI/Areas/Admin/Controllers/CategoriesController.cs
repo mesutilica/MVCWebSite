@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCWebSite.Core.Entities;
 using MVCWebSite.Data;
+using MVCWebSite.WebUI.Tools;
 
 namespace MVCWebSite.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize]
     public class CategoriesController : Controller
     {
         private readonly DatabaseContext _context;
@@ -36,12 +37,14 @@ namespace MVCWebSite.WebUI.Areas.Admin.Controllers
         // POST: CategoriesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Category collection)
+        public ActionResult Create(Category collection, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (Image is not null)
+                        collection.Image = FileHelper.FileLoader(Image);
                     _context.Categories.Add(collection);
                     _context.SaveChanges();
                     return RedirectToAction(nameof(Index));
@@ -64,12 +67,14 @@ namespace MVCWebSite.WebUI.Areas.Admin.Controllers
         // POST: CategoriesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Category collection)
+        public ActionResult Edit(int id, Category collection, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (Image is not null)
+                        collection.Image = FileHelper.FileLoader(Image);
                     _context.Categories.Update(collection);
                     _context.SaveChanges();
                     return RedirectToAction(nameof(Index));

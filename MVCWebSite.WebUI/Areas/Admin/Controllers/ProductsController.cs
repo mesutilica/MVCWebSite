@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MVCWebSite.Core.Entities;
 using MVCWebSite.Data;
+using MVCWebSite.WebUI.Tools;
 
 namespace MVCWebSite.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize]
     public class ProductsController : Controller
     {
         private readonly DatabaseContext _context;
@@ -38,12 +39,14 @@ namespace MVCWebSite.WebUI.Areas.Admin.Controllers
         // POST: ProductsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product collection)
+        public ActionResult Create(Product collection, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (Image is not null)
+                        collection.Image = FileHelper.FileLoader(Image);
                     _context.Products.Add(collection);
                     _context.SaveChanges();
                     return RedirectToAction(nameof(Index));
@@ -67,12 +70,14 @@ namespace MVCWebSite.WebUI.Areas.Admin.Controllers
         // POST: ProductsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Product collection)
+        public ActionResult Edit(int id, Product collection, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (Image is not null)
+                        collection.Image = FileHelper.FileLoader(Image);
                     _context.Products.Update(collection);
                     _context.SaveChanges();
                     return RedirectToAction(nameof(Index));

@@ -1,4 +1,5 @@
 using MVCWebSite.Data; // DatabaseContext
+using Microsoft.AspNetCore.Authentication.Cookies; // oturum açma
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 
 builder.Services.AddDbContext<DatabaseContext>();
+
+builder.Services.AddAuthentication().AddCookie(); // oturum açma
 
 var app = builder.Build();
 
