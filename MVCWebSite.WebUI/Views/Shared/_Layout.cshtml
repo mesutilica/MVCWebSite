@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - MVCWebSite.WebUI</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MVCWebSite.WebUI.styles.css" asp-append-version="true" />
 </head>
@@ -25,16 +26,24 @@
                         </li>
                         @await Component.InvokeAsync("Kategoriler")
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Gizliik</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Gizliik</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="ContactUs">İletişim</a>
                         </li>
                     </ul>
+
+                    <form action="/Products" method="get" class="me-3">
+                        <input type="search" name="q" class="form-control" placeholder="Ara.." />
+                    </form>
+
                 </div>
                 @if (Context.User.Identity.IsAuthenticated)
                 {
                     <a href="/Account/Logout" class="btn btn-danger">Oturumu Kapat</a>
                     if (Context.User.IsInRole("Admin"))
                     {
-                        <a href="/Admin" class="btn btn-outline-dark ms-3">Yönetim Paneli</a>
+                        <a href="/Admin" target="_blank" class="btn btn-outline-dark ms-3">Yönetim Paneli</a>
                     }
                 }
                 else
@@ -50,11 +59,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - MVCWebSite.WebUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    <partial name="_PartialFooter" />
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

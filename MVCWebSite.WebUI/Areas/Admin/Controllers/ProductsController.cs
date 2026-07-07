@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MVCWebSite.Core.Entities;
 using MVCWebSite.Data;
 using MVCWebSite.WebUI.Tools;
@@ -20,7 +21,7 @@ namespace MVCWebSite.WebUI.Areas.Admin.Controllers
         // GET: ProductsController
         public ActionResult Index()
         {
-            return View(_context.Products);
+            return View(_context.Products.Include(c => c.Category));
         }
 
         // GET: ProductsController/Details/5

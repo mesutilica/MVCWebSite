@@ -16,10 +16,20 @@ namespace MVCWebSite.WebUI.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Sliders);
+            var model = new HomePageViewModel
+            {
+                Sliders = _context.Sliders.ToList(),
+                Products = _context.Products.Where(p => p.IsActive && p.IsHome).ToList(),
+            };
+            return View(model);
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult ContactUs()
         {
             return View();
         }
