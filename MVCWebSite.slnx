@@ -1,5 +1,7 @@
 <Solution>
   <Project Path="MVCWebSite.Core/MVCWebSite.Core.csproj" />
   <Project Path="MVCWebSite.Data/MVCWebSite.Data.csproj" />
+  <Project Path="MVCWebSite.WebAPI/MVCWebSite.WebAPI.csproj" Id="545546c0-4b1f-47af-a6f4-31ff7031e910" />
+  <Project Path="MVCWebSite.WebAPIUsing/MVCWebSite.WebAPIUsing.csproj" Id="5ba01664-5b3d-46c8-b5fd-504131557dcc" />
   <Project Path="MVCWebSite.WebUI/MVCWebSite.WebUI.csproj" />
 </Solution>

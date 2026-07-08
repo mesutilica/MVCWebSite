@@ -12,7 +12,10 @@ namespace MVCWebSite.Data
         public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // lokalde çalışırken kullanılacak test db
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; database=MVCWebSite; integrated security=true; TrustServerCertificate=True;").ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+            // canlı db bilgileri
+            // optionsBuilder.UseSqlServer(@"Server=mssql.siteadi.com; database=MVCWebSite; username=canlidbkullaniciadi; password=canlidbşifre; TrustServerCertificate=True;").ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
