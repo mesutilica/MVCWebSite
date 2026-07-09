@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using MVCWebSite.Core.Entities;
-using MVCWebSite.Data;
 using System.Security.Claims;
 
-namespace MVCWebSite.WebUI.Controllers
+namespace MVCWebSite.WebAPIUsing.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly DatabaseContext _databaseContext;
+        string _apiAdres = "https://localhost:7002/api/";
+        private readonly HttpClient _httpClient;
 
-        public AccountController(DatabaseContext databaseContext)
+        public AccountController(HttpClient httpClient)
         {
-            _databaseContext = databaseContext;
+            _httpClient = httpClient;
         }
 
         public IActionResult Index()
@@ -24,9 +24,10 @@ namespace MVCWebSite.WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(User user)
+        public async Task<IActionResult> LoginAsync(User user)
         {
-            var kullanici = _databaseContext.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password && u.IsActive);
+            var kullanicilar = await _httpClient.GetFromJsonAsync<List<User>>(_apiAdres + "users/");
+            var kullanici = kullanicilar.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password && u.IsActive);
             if (kullanici != null)
             {
                 var haklar = new List<Claim>() // kullanıcı hakları tanımladık

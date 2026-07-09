@@ -13,9 +13,17 @@ namespace MVCWebSite.WebUI.Controllers
             _context = context;
         }
 
-        public IActionResult Index(int id)
+        public IActionResult Index(int? id)
         {
+            if (id is null)
+            {
+                return BadRequest();
+            }
             var model = _context.Categories.Where(p => p.IsActive && p.Id == id).Include(c => c.Products).FirstOrDefault();
+            if (model is null)
+            {
+                return NotFound();
+            }
             return View(model);
         }
     }

@@ -7,6 +7,8 @@ builder.Services.AddSession();
 
 builder.Services.AddHttpClient();
 
+builder.Services.AddAuthentication().AddCookie(); // oturum açma
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,0 +1,41 @@
+@model Category
+
+@{
+    ViewData["Title"] = "Kategori Detayı";
+}
+
+<h1>Kategori Detayı</h1>
+
+<div>
+    <h4>Kategori</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Id)</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Description)</dt>
+        <dd class="col-sm-10">@Model.Description</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Image)</dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <img src="/Images/@Url.Content(Model.Image)" alt="Category Image" style="max-width:200px; display:block; margin-bottom:10px;" />
+            }
+        </dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.CreateDate)</dt>
+        <dd class="col-sm-10">@Model.CreateDate.ToString("g")</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.IsActive)</dt>
+        <dd class="col-sm-10">@(Model.IsActive ? "Aktif" : "Pasif")</dd>
+    </dl>
+</div>
+
+<p>
+    <a asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Düzenle</a>
+    <a asp-area="Admin" asp-controller="Categories" asp-action="Index" class="btn btn-secondary">Geri</a>
+</p>
